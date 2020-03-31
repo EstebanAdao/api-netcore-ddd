@@ -8,23 +8,23 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\esteban.perea\\.nuget\\packages\\": {},
+    "C:\\Users\\ADAO1\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\CodeSource\\curso_api_netcore\\src\\Api.CrossCutting\\CrossCutting.csproj",
+      "projectUniqueName": "C:\\CodeSource\\api_netcore_ddd\\src\\Api.CrossCutting\\CrossCutting.csproj",
       "projectName": "CrossCutting",
-      "projectPath": "C:\\CodeSource\\curso_api_netcore\\src\\Api.CrossCutting\\CrossCutting.csproj",
-      "packagesPath": "C:\\Users\\esteban.perea\\.nuget\\packages\\",
-      "outputPath": "C:\\CodeSource\\curso_api_netcore\\src\\Api.CrossCutting\\obj\\",
+      "projectPath": "C:\\CodeSource\\api_netcore_ddd\\src\\Api.CrossCutting\\CrossCutting.csproj",
+      "packagesPath": "C:\\Users\\ADAO1\\.nuget\\packages\\",
+      "outputPath": "C:\\CodeSource\\api_netcore_ddd\\src\\Api.CrossCutting\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\esteban.perea\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ADAO1\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -32,9 +32,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "http://www.nuget.org/api/v2/curated-feeds/microsoftdotnet/": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://www.nuget.org/api/v2/": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
@@ -64,7 +62,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

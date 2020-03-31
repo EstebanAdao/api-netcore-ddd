@@ -1,5 +1,5 @@
 {
-  "FilePath": "c:\\CodeSource\\curso_api_netcore\\src\\Api.Application\\Application.csproj",
+  "FilePath": "c:\\CodeSource\\api_netcore_ddd\\src\\Api.Application\\Application.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "3.0",
@@ -20516,7 +20516,7 @@
         }
       }
     ],
-    "CSharpLanguageVersion": 800
+    "CSharpLanguageVersion": 703
   },
   "RootNamespace": "Application",
   "Documents": [],

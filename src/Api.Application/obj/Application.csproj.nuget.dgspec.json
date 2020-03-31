@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\CodeSource\\curso_api_netcore\\src\\Api.Application\\Application.csproj": {}
+    "C:\\CodeSource\\api_netcore_ddd\\src\\Api.Application\\Application.csproj": {}
   },
   "projects": {
-    "C:\\CodeSource\\curso_api_netcore\\src\\Api.Application\\Application.csproj": {
+    "C:\\CodeSource\\api_netcore_ddd\\src\\Api.Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\CodeSource\\curso_api_netcore\\src\\Api.Application\\Application.csproj",
+        "projectUniqueName": "C:\\CodeSource\\api_netcore_ddd\\src\\Api.Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\CodeSource\\curso_api_netcore\\src\\Api.Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\esteban.perea\\.nuget\\packages\\",
-        "outputPath": "C:\\CodeSource\\curso_api_netcore\\src\\Api.Application\\obj\\",
+        "projectPath": "C:\\CodeSource\\api_netcore_ddd\\src\\Api.Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\ADAO1\\.nuget\\packages\\",
+        "outputPath": "C:\\CodeSource\\api_netcore_ddd\\src\\Api.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\esteban.perea\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ADAO1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,9 +25,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://www.nuget.org/api/v2/curated-feeds/microsoftdotnet/": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://www.nuget.org/api/v2/": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
@@ -60,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

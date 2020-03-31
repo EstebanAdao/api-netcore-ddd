@@ -6,3 +6,11 @@ C:\CodeSource\curso_api_netcore\src\Api.CrossCutting\obj\Debug\netcoreapp3.1\Cro
 C:\CodeSource\curso_api_netcore\src\Api.CrossCutting\obj\Debug\netcoreapp3.1\CrossCutting.AssemblyInfo.cs
 C:\CodeSource\curso_api_netcore\src\Api.CrossCutting\obj\Debug\netcoreapp3.1\CrossCutting.dll
 C:\CodeSource\curso_api_netcore\src\Api.CrossCutting\obj\Debug\netcoreapp3.1\CrossCutting.pdb
+C:\CodeSource\api_netcore_ddd\src\Api.CrossCutting\bin\Debug\netcoreapp3.1\CrossCutting.deps.json
+C:\CodeSource\api_netcore_ddd\src\Api.CrossCutting\bin\Debug\netcoreapp3.1\CrossCutting.dll
+C:\CodeSource\api_netcore_ddd\src\Api.CrossCutting\bin\Debug\netcoreapp3.1\CrossCutting.pdb
+C:\CodeSource\api_netcore_ddd\src\Api.CrossCutting\obj\Debug\netcoreapp3.1\CrossCutting.csprojAssemblyReference.cache
+C:\CodeSource\api_netcore_ddd\src\Api.CrossCutting\obj\Debug\netcoreapp3.1\CrossCutting.AssemblyInfoInputs.cache
+C:\CodeSource\api_netcore_ddd\src\Api.CrossCutting\obj\Debug\netcoreapp3.1\CrossCutting.AssemblyInfo.cs
+C:\CodeSource\api_netcore_ddd\src\Api.CrossCutting\obj\Debug\netcoreapp3.1\CrossCutting.dll
+C:\CodeSource\api_netcore_ddd\src\Api.CrossCutting\obj\Debug\netcoreapp3.1\CrossCutting.pdb

@@ -6,3 +6,11 @@ C:\CodeSource\curso_api_netcore\src\Api.Service\obj\Debug\netcoreapp3.1\Service.
 C:\CodeSource\curso_api_netcore\src\Api.Service\obj\Debug\netcoreapp3.1\Service.AssemblyInfo.cs
 C:\CodeSource\curso_api_netcore\src\Api.Service\obj\Debug\netcoreapp3.1\Service.dll
 C:\CodeSource\curso_api_netcore\src\Api.Service\obj\Debug\netcoreapp3.1\Service.pdb
+C:\CodeSource\api_netcore_ddd\src\Api.Service\bin\Debug\netcoreapp3.1\Service.deps.json
+C:\CodeSource\api_netcore_ddd\src\Api.Service\bin\Debug\netcoreapp3.1\Service.dll
+C:\CodeSource\api_netcore_ddd\src\Api.Service\bin\Debug\netcoreapp3.1\Service.pdb
+C:\CodeSource\api_netcore_ddd\src\Api.Service\obj\Debug\netcoreapp3.1\Service.csprojAssemblyReference.cache
+C:\CodeSource\api_netcore_ddd\src\Api.Service\obj\Debug\netcoreapp3.1\Service.AssemblyInfoInputs.cache
+C:\CodeSource\api_netcore_ddd\src\Api.Service\obj\Debug\netcoreapp3.1\Service.AssemblyInfo.cs
+C:\CodeSource\api_netcore_ddd\src\Api.Service\obj\Debug\netcoreapp3.1\Service.dll
+C:\CodeSource\api_netcore_ddd\src\Api.Service\obj\Debug\netcoreapp3.1\Service.pdb
