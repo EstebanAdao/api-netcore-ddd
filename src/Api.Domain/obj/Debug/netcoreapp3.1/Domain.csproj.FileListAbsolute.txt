@@ -14,3 +14,4 @@ C:\CodeSource\api_netcore_ddd\src\Api.Domain\obj\Debug\netcoreapp3.1\Domain.Asse
 C:\CodeSource\api_netcore_ddd\src\Api.Domain\obj\Debug\netcoreapp3.1\Domain.AssemblyInfo.cs
 C:\CodeSource\api_netcore_ddd\src\Api.Domain\obj\Debug\netcoreapp3.1\Domain.dll
 C:\CodeSource\api_netcore_ddd\src\Api.Domain\obj\Debug\netcoreapp3.1\Domain.pdb
+C:\CodeSource\api_netcore_ddd\src\Api.Domain\obj\Debug\netcoreapp3.1\Domain.csproj.CoreCompileInputs.cache

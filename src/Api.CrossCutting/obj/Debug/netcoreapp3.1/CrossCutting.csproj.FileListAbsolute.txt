@@ -14,3 +14,11 @@ C:\CodeSource\api_netcore_ddd\src\Api.CrossCutting\obj\Debug\netcoreapp3.1\Cross
 C:\CodeSource\api_netcore_ddd\src\Api.CrossCutting\obj\Debug\netcoreapp3.1\CrossCutting.AssemblyInfo.cs
 C:\CodeSource\api_netcore_ddd\src\Api.CrossCutting\obj\Debug\netcoreapp3.1\CrossCutting.dll
 C:\CodeSource\api_netcore_ddd\src\Api.CrossCutting\obj\Debug\netcoreapp3.1\CrossCutting.pdb
+C:\CodeSource\api_netcore_ddd\src\Api.CrossCutting\obj\Debug\netcoreapp3.1\CrossCutting.csproj.CoreCompileInputs.cache
+C:\CodeSource\api_netcore_ddd\src\Api.CrossCutting\bin\Debug\netcoreapp3.1\Data.dll
+C:\CodeSource\api_netcore_ddd\src\Api.CrossCutting\bin\Debug\netcoreapp3.1\Domain.dll
+C:\CodeSource\api_netcore_ddd\src\Api.CrossCutting\bin\Debug\netcoreapp3.1\Service.dll
+C:\CodeSource\api_netcore_ddd\src\Api.CrossCutting\bin\Debug\netcoreapp3.1\Domain.pdb
+C:\CodeSource\api_netcore_ddd\src\Api.CrossCutting\bin\Debug\netcoreapp3.1\Data.pdb
+C:\CodeSource\api_netcore_ddd\src\Api.CrossCutting\bin\Debug\netcoreapp3.1\Service.pdb
+C:\CodeSource\api_netcore_ddd\src\Api.CrossCutting\obj\Debug\netcoreapp3.1\CrossCutting.csproj.CopyComplete
