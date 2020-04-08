@@ -18,3 +18,6 @@ C:\CodeSource\api_netcore_ddd\src\Api.Data\bin\Debug\netcoreapp3.1\Domain.dll
 C:\CodeSource\api_netcore_ddd\src\Api.Data\bin\Debug\netcoreapp3.1\Domain.pdb
 C:\CodeSource\api_netcore_ddd\src\Api.Data\obj\Debug\netcoreapp3.1\Data.csproj.CopyComplete
 C:\CodeSource\api_netcore_ddd\src\Api.Data\obj\Debug\netcoreapp3.1\Data.csproj.CoreCompileInputs.cache
+C:\CodeSource\api_netcore_ddd\src\Api.Data\bin\Debug\netcoreapp3.1\Data.runtimeconfig.json
+C:\CodeSource\api_netcore_ddd\src\Api.Data\bin\Debug\netcoreapp3.1\Data.runtimeconfig.dev.json
+C:\CodeSource\api_netcore_ddd\src\Api.Data\obj\Debug\netcoreapp3.1\Data.genruntimeconfig.cache
