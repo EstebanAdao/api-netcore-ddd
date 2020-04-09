@@ -1,77 +1,113 @@
 using Api.CrossCutting.DependencyInjection;
-using Api.Data.Context;
+using Api.Domain.Security;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
+using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Application
 {
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+	public class Startup
+	{
+		public Startup(IConfiguration configuration)
+		{
+			Configuration = configuration;
+		}
 
-        public IConfiguration Configuration { get; }
+		public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            ConfigureService.ConfigureDependenciesService(services);
-            ConfigureRepository.ConfigureDependenciesRepository(services);
+		// This method gets called by the runtime. Use this method to add services to the container.
+		public void ConfigureServices(IServiceCollection services)
+		{
+			ConfigureService.ConfigureDependenciesService(services);
+			ConfigureRepository.ConfigureDependenciesRepository(services);
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc(
-                "v1",
-                new OpenApiInfo
-                {
-                    Title = "Curso de AspNetCore 3.1",
-                    Version = "v1",
-                    Description = "Exemplo de API REST criada com ASP.NET Core",
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Esteban Perea",
-                        Url = new System.Uri("https://github.com/EstebanAdao")
-                    }
-                });
-            });
+			var signingConfigurations = new SigningConfigurations();
+			services.AddSingleton(signingConfigurations);
 
-            services.AddControllers();
-        }
+			var tokenConfigurations = new TokenConfigurations();
+			new ConfigureFromConfigurationOptions<TokenConfigurations>(
+				Configuration.GetSection("TokenConfigurations"))
+				.Configure(tokenConfigurations);
+			services.AddSingleton(tokenConfigurations);
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+			services.AddAuthentication(authOptions =>
+			{
+				authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+				authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.RoutePrefix = string.Empty;
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
+			}).AddJwtBearer(bearerOptions =>
+			{
+				var paramsValidation = bearerOptions.TokenValidationParameters;
+				paramsValidation.IssuerSigningKey = signingConfigurations.Key;
+				paramsValidation.ValidAudience = tokenConfigurations.Audience;
+				paramsValidation.ValidIssuer = tokenConfigurations.Issuer;
+				paramsValidation.ValidateIssuerSigningKey = true;
+				paramsValidation.ValidateLifetime = true;
+				paramsValidation.ClockSkew = TimeSpan.Zero;
+			});
 
-            var option = new RewriteOptions();
-            option.AddRedirect("^$", "api-docs");
-            app.UseRewriter(option);
+			services.AddAuthorization(auth =>
+			{
+				auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+					.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+					.RequireAuthenticatedUser().Build());
+			});
 
-            app.UseRouting();
+			services.AddSwaggerGen(c =>
+			{
+				c.SwaggerDoc(
+				"v1",
+				new OpenApiInfo
+				{
+					Title = "Curso de AspNetCore 3.1",
+					Version = "v1",
+					Description = "Exemplo de API REST criada com ASP.NET Core",
+					Contact = new OpenApiContact
+					{
+						Name = "Esteban Perea",
+						Url = new System.Uri("https://github.com/EstebanAdao")
+					}
+				});
+			});
 
-            app.UseAuthorization();
+			services.AddControllers();
+		}
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-        }
-    }
+		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		{
+			if (env.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+			}
+
+			app.UseSwagger();
+			app.UseSwaggerUI(c =>
+			{
+				c.RoutePrefix = string.Empty;
+				c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+			});
+
+			var option = new RewriteOptions();
+			option.AddRedirect("^$", "api-docs");
+			app.UseRewriter(option);
+
+			app.UseRouting();
+
+			app.UseAuthorization();
+
+			app.UseEndpoints(endpoints =>
+			{
+				endpoints.MapControllers();
+			});
+		}
+	}
 }
