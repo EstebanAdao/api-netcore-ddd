@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using Swashbuckle.AspNetCore.Swagger;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Application
 {
@@ -73,7 +76,26 @@ namespace Application
 					Contact = new OpenApiContact
 					{
 						Name = "Esteban Perea",
-						Url = new System.Uri("https://github.com/EstebanAdao")
+						Url = new Uri("https://github.com/EstebanAdao")
+					}
+				});
+				c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+				{
+					In = ParameterLocation.Header,
+					Description = "Entre com o token JWT",
+					Name = "Authorization",
+					Type = SecuritySchemeType.ApiKey
+				});
+				c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+					{
+						new OpenApiSecurityScheme
+						{
+							Reference = new OpenApiReference{
+								Type = ReferenceType.SecurityScheme,
+								Id = "Bearer"
+							}
+						},
+						new List<string>()
 					}
 				});
 			});
