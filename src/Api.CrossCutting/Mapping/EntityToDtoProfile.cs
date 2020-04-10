@@ -11,7 +11,7 @@ namespace CrossCutting.Mapping
 	{
 		public EntityToDtoProfile()
 		{
-			CreateMap<UserDtoCreate, UserEntity>()
+			CreateMap<UserDto, UserEntity>()
 				.ReverseMap();
 
 			CreateMap<UserDtoCreateResult, UserEntity>()

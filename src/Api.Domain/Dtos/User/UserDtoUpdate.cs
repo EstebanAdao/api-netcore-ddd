@@ -9,6 +9,7 @@ namespace Domain.Dtos.User
 	{
 		[Required(ErrorMessage = "Id é campo obrigatorio")]
 		public Guid Id { get; set; }
+
 		[Required(ErrorMessage = "Nome é campo obrigatorio")]
 		[StringLength(60, ErrorMessage = "Nome deve ter no maximo {1} caracteres")]
 		public string Name { get; set; }
