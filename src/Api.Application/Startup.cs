@@ -14,122 +14,133 @@ using Microsoft.AspNetCore.Authorization;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Collections.Generic;
 using System.Linq;
+using CrossCutting.Mapping;
+using AutoMapper;
 
 namespace Application
 {
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+	public class Startup
+	{
+		public Startup(IConfiguration configuration)
+		{
+			Configuration = configuration;
+		}
 
-        public IConfiguration Configuration { get; }
+		public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            ConfigureService.ConfigureDependenciesService(services);
-            ConfigureRepository.ConfigureDependenciesRepository(services);
+		// This method gets called by the runtime. Use this method to add services to the container.
+		public void ConfigureServices(IServiceCollection services)
+		{
+			ConfigureService.ConfigureDependenciesService(services);
+			ConfigureRepository.ConfigureDependenciesRepository(services);
 
-            var signingConfigurations = new SigningConfigurations();
-            services.AddSingleton(signingConfigurations);
+			var configMapper = new MapperConfiguration(cfg =>
+			{
+				cfg.AddProfile(new DtoToModelProfile());
+				cfg.AddProfile(new EntityToDtoProfile());
+				cfg.AddProfile(new ModelToEntityProfile());
+			});
+			IMapper mapper = configMapper.CreateMapper();
+			services.AddSingleton(mapper);
 
-            var tokenConfigurations = new TokenConfigurations();
-            new ConfigureFromConfigurationOptions<TokenConfigurations>(
-                Configuration.GetSection("TokenConfigurations"))
-                .Configure(tokenConfigurations);
-            services.AddSingleton(tokenConfigurations);
+			var signingConfigurations = new SigningConfigurations();
+			services.AddSingleton(signingConfigurations);
 
-            services.AddAuthentication(authOptions =>
-            {
-                authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+			var tokenConfigurations = new TokenConfigurations();
+			new ConfigureFromConfigurationOptions<TokenConfigurations>(
+				Configuration.GetSection("TokenConfigurations"))
+				.Configure(tokenConfigurations);
+			services.AddSingleton(tokenConfigurations);
 
-            }).AddJwtBearer(bearerOptions =>
-            {
-                var paramsValidation = bearerOptions.TokenValidationParameters;
-                paramsValidation.IssuerSigningKey = signingConfigurations.Key;
-                paramsValidation.ValidAudience = tokenConfigurations.Audience;
-                paramsValidation.ValidIssuer = tokenConfigurations.Issuer;
-                paramsValidation.ValidateIssuerSigningKey = true;
-                paramsValidation.ValidateLifetime = true;
-                paramsValidation.ClockSkew = TimeSpan.Zero;
-            });
+			services.AddAuthentication(authOptions =>
+			{
+				authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+				authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
-            services.AddAuthorization(auth =>
-            {
-                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
-                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
-                    .RequireAuthenticatedUser().Build());
-            });
+			}).AddJwtBearer(bearerOptions =>
+			{
+				var paramsValidation = bearerOptions.TokenValidationParameters;
+				paramsValidation.IssuerSigningKey = signingConfigurations.Key;
+				paramsValidation.ValidAudience = tokenConfigurations.Audience;
+				paramsValidation.ValidIssuer = tokenConfigurations.Issuer;
+				paramsValidation.ValidateIssuerSigningKey = true;
+				paramsValidation.ValidateLifetime = true;
+				paramsValidation.ClockSkew = TimeSpan.Zero;
+			});
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc(
-                "v1",
-                new OpenApiInfo
-                {
-                    Title = "Curso de AspNetCore 3.1",
-                    Version = "v1",
-                    Description = "Exemplo de API REST criada com ASP.NET Core",
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Esteban Perea",
-                        Url = new Uri("https://github.com/EstebanAdao")
-                    }
-                });
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    In = ParameterLocation.Header,
-                    Description = "Entre com o token JWT",
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey
-                });
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference{
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            }
-                        },
-                        new List<string>()
-                    }
-                });
-            });
+			services.AddAuthorization(auth =>
+			{
+				auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+					.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+					.RequireAuthenticatedUser().Build());
+			});
 
-            services.AddControllers().AddNewtonsoftJson();
-        }
+			services.AddSwaggerGen(c =>
+			{
+				c.SwaggerDoc(
+				"v1",
+				new OpenApiInfo
+				{
+					Title = "Curso de AspNetCore 3.1",
+					Version = "v1",
+					Description = "Exemplo de API REST criada com ASP.NET Core",
+					Contact = new OpenApiContact
+					{
+						Name = "Esteban Perea",
+						Url = new Uri("https://github.com/EstebanAdao")
+					}
+				});
+				c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+				{
+					In = ParameterLocation.Header,
+					Description = "Entre com o token JWT",
+					Name = "Authorization",
+					Type = SecuritySchemeType.ApiKey
+				});
+				c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+					{
+						new OpenApiSecurityScheme
+						{
+							Reference = new OpenApiReference{
+								Type = ReferenceType.SecurityScheme,
+								Id = "Bearer"
+							}
+						},
+						new List<string>()
+					}
+				});
+			});
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+			services.AddControllers().AddNewtonsoftJson();
+		}
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.RoutePrefix = string.Empty;
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
+		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		{
+			if (env.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+			}
 
-            var option = new RewriteOptions();
-            option.AddRedirect("^$", "api-docs");
-            app.UseRewriter(option);
+			app.UseSwagger();
+			app.UseSwaggerUI(c =>
+			{
+				c.RoutePrefix = string.Empty;
+				c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+			});
 
-            app.UseRouting();
+			var option = new RewriteOptions();
+			option.AddRedirect("^$", "api-docs");
+			app.UseRewriter(option);
 
-            app.UseAuthorization();
+			app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-        }
-    }
+			app.UseAuthorization();
+
+			app.UseEndpoints(endpoints =>
+			{
+				endpoints.MapControllers();
+			});
+		}
+	}
 }
