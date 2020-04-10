@@ -35,7 +35,7 @@ namespace Api.Service.Service
 		public async Task<UserDto> Get(Guid id)
 		{
 			var entity = await _repository.SelectAsync(id);
-			return _mapper.Map<UserDto>(entity);
+			return _mapper.Map<UserDto>(entity) ?? new UserDto();
 		}
 
 		public async Task<UserDtoCreateResult> Post(UserDtoCreate user)
